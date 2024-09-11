@@ -1,0 +1,54 @@
+import turtle
+
+# Set up the screen
+def setup_screen():
+    screen = turtle.Screen()
+    screen.title("Rose Animation with Anchalian")
+    screen.bgcolor("white")
+    return screen
+
+# Create a turtle to draw the rose
+def create_rose_turtle():
+    rose = turtle.Turtle()
+    rose.speed(0)
+    rose.color("red")
+    return rose
+
+# Function to draw a rose petal
+def draw_petal(rose):
+    for _ in range(2):
+        rose.circle(100, 60)
+        rose.left(120)
+
+# Function to draw the entire rose
+def draw_rose(rose):
+    for _ in range(36):
+        draw_petal(rose)
+        rose.left(10)
+
+# Function to animate the rose
+def animate_rose(rose, screen):
+    rose.clear()
+    draw_rose(rose)
+    screen.ontimer(lambda: animate_rose(rose, screen), 1000)
+
+# Create a turtle to write the name
+def write_name():
+    name_turtle = turtle.Turtle()
+    name_turtle.hideturtle()
+    name_turtle.penup()
+    name_turtle.goto(0, 0)  # Move to the center of the screen
+    name_turtle.color("blue")
+    name_turtle.write("Anchalian 💖", align="center", font=("Arial", 24, "bold"))
+
+# Main function to set up and start the animation
+def main():
+    screen = setup_screen()
+    rose = create_rose_turtle()
+    write_name()
+    animate_rose(rose, screen)
+    turtle.done()
+
+# Start the program
+if __name__ == "__main__":
+    main()
